@@ -1,7 +1,7 @@
 package com.izabelrodrigues.maskedit.samples;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.widget.EditText;
 
 import com.izabelrodrigues.maskedit.MaskEdit;
@@ -16,8 +16,8 @@ public class SimpleTelephone extends ActionBarActivity {
         initViews();
     }
 
-    private void initViews(){
+    private void initViews() {
         EditText mTelephone = (EditText) findViewById(R.id.simple_telephoneNumber);
-        mTelephone.addTextChangedListener(MaskEdit.insertMaskSingleFieldTelephone(mTelephone));
+        mTelephone.addTextChangedListener(MaskEdit.insertMaskTelephone(mTelephone));
     }
 }

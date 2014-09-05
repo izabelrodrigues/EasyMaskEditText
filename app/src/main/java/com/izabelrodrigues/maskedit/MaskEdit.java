@@ -14,10 +14,11 @@ public class MaskEdit {
 
     /**
      * This method insert a mask for a telephone number with 8 and 9 digits
-     * @param mEditText
+     *
+     * @param mEditText Field for mask
      * @return TextWatcher type
      */
-    public static TextWatcher insertMaskSingleFieldTelephone(final EditText mEditText){
+    public static TextWatcher insertMaskTelephone(final EditText mEditText) {
 
         return new TextWatcher() {
             @Override
@@ -28,16 +29,16 @@ public class MaskEdit {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 sTextFormatted = mEditText.getText().toString().trim();
-                if(sTextFormatted.length() == 4){
+                if (sTextFormatted.length() == 4) {
                     sTextFormatted = mEditText.getText().toString().trim();
                     mEditText.removeTextChangedListener(this);
                     mEditText.setSelection(mEditText.getText().toString().length());
                     mEditText.addTextChangedListener(this);
-                }else if (sTextFormatted.length() == 10){
+                } else if (sTextFormatted.length() == 10) {
                     sTextFormatted = mEditText.getText().toString().trim();
                     mEditText.removeTextChangedListener(this);
-                    sTextFormatted = sTextFormatted.replaceAll("-","");
-                    String sNewTextFormatted = new StringBuilder(sTextFormatted).insert(sTextFormatted.length()-4,"-").toString();
+                    sTextFormatted = sTextFormatted.replaceAll("-", "");
+                    String sNewTextFormatted = new StringBuilder(sTextFormatted).insert(sTextFormatted.length() - 4, "-").toString();
                     mEditText.removeTextChangedListener(this);
                     mEditText.setText(sNewTextFormatted);
                     mEditText.setSelection(mEditText.getText().toString().length());
@@ -52,12 +53,12 @@ public class MaskEdit {
 
                 int mlastPositionSeparator;
                 int qteSeparator;
-                if(sSize > 5 && sSize < 10){
+                if (sSize > 5 && sSize < 10) {
                     mEditText.removeTextChangedListener(this);
-                    sTextFormatted = MaskEditUtil.insertSeparator(mEditText,"-");
-                    mlastPositionSeparator = MaskEditUtil.getLastPositionSeparator(sTextFormatted,"-");
+                    sTextFormatted = MaskEditUtil.insertSeparator(mEditText, "-");
+                    mlastPositionSeparator = MaskEditUtil.getLastPositionSeparator(sTextFormatted, "-");
                     qteSeparator = MaskEditUtil.countSeparator(sTextFormatted, "-");
-                    sTextFormatted = MaskEditUtil.removeSeparatorIfNeed(sTextFormatted,new Integer[]{mlastPositionSeparator,qteSeparator});
+                    sTextFormatted = MaskEditUtil.removeSeparatorIfNeed(sTextFormatted, mlastPositionSeparator, qteSeparator);
                     mEditText.setText(sTextFormatted);
                     mEditText.setSelection(mEditText.getText().toString().length());
                     mEditText.addTextChangedListener(this);
